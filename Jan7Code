@@ -34,7 +34,7 @@ task main()
 		{
 			motor[arm] = -63.5;
 		}
-		else if(vexRT[Btn5D] && )
+		else if(vexRT[Btn5D])
 		{
 			motor[arm] = 63.5;
 			prevDown = true;
