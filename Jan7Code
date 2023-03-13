@@ -1,3 +1,4 @@
+#pragma config(Sensor, dgtl1,  armMax,         sensorDigitalIn)
 #pragma config(Motor,  port1,           rightDrive,    tmotorVex393_HBridge, openLoop)
 #pragma config(Motor,  port3,           claw,          tmotorServoContinuousRotation, openLoop)
 #pragma config(Motor,  port4,           arm,           tmotorServoContinuousRotation, openLoop)
@@ -34,7 +35,7 @@ task main()
 		{
 			motor[arm] = -63.5;
 		}
-		else if(vexRT[Btn5D])
+		else if(vexRT[Btn5D] && SensorValue[armMax] == 1)
 		{
 			motor[arm] = 63.5;
 			prevDown = true;
@@ -49,6 +50,13 @@ task main()
 			}
 			
 			motor[arm] = -10;
+		}
+		if(SensorValue[armMax] == 0)
+		{
+			motor[arm] = -63.5;
+			wait1Msec(100);
+			motor[arm] = 0;
+			wait1Msec(500);
 		}
 		if(vexRT[Btn6U])
 		{
